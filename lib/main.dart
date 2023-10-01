@@ -29,10 +29,10 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  Future<List<DocumentSnapshot>> getData() async {
+  Future getData() async {
     var firestore = FirebaseFirestore.instance;
-    QuerySnapshot querySnapshot = await firestore.collection("country").get();
-    return querySnapshot.docs;
+    QuerySnapshot qn = await firestore.collection("country").get();
+    return qn.docs;
   }
 
   @override
@@ -42,28 +42,19 @@ class _HomepageState extends State<Homepage> {
       body: FutureBuilder(
         future: getData(),
         builder: (_, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(); // You can show a loading indicator while data is being fetched.
-          } else if (snapshot.hasError) {
-            return Text("Error: ${snapshot.error}");
-          } else {
-            List<DocumentSnapshot>? data = snapshot.data as List<DocumentSnapshot>?;
             return ListView.builder(
-              itemCount: data?.length,
+              itemCount: snapshot.data?.length,
               itemBuilder: (_, index) {
-                DocumentSnapshot<Object?>? document = data?[index];
-                final name = document?["Name"] as String?;
+                DocumentSnapshot  data = snapshot.data[index];
                 return Card(
                   child: ListTile(
-                    title: Text(name ?? 'No Name'), // Handle the possibility of a null name.
+                    title: Text(data["Name"]),
                   ),
                 );
               },
             );
           }
-        },
       ),
     );
   }
 }
-//madarcod
