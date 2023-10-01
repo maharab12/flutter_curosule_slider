@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "11193376789",
+    "project_id": "second-a0d71",
+    "storage_bucket": "second-a0d71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11193376789:android:1877108788f6654ca62e1c",
+        "android_client_info": {
+          "package_name": "com.example.firebase_second"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpfSNc0bVB2ZWWDmSUQiPFocKXaoJZ6mM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
