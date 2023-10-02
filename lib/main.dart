@@ -7,8 +7,7 @@ void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); // Ensure that Flutter is initialized.
   await Firebase.initializeApp(); // Initialize Firebase.
-  runApp(MyApp());
-}
+  runApp(MyApp());}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
