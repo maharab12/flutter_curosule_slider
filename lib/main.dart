@@ -9,7 +9,6 @@ void main() async {
   await Firebase.initializeApp(); // Initialize Firebase.
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -30,31 +29,21 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  Future sendData() async{
+    final db = FirebaseFirestore.instance.collection("userInfo").add({
+      "name": "Mehrab hasan",
+      "age": 20.toString(),
+      "height":"5.9"
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("Catagories").snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-                child: Text("Loading")
-            );
-          } else {
-            return GridView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: snapshot.data?.docs.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (context, index) {
-                  DocumentSnapshot data = snapshot.data
-                      ?.docs[index] as DocumentSnapshot<Object?>;
-                  return Card(child: GridTile(
-                      child: Image.network(data["img"], fit: BoxFit.fill,)));
-                }
-            );
-          }
-        },
+      body: Center(
+        child: ElevatedButton(
+          child: null,
+          onPressed:sendData,
+        ),
       ),
     );
   }
