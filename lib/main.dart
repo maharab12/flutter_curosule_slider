@@ -29,12 +29,12 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
-  Future get() async{
-    var s=FirebaseFirestore.instance;
-    QuerySnapshot querySnapshot= await s.collection("curosure_image").get();
+  Future get() async {
+    var s = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot = await s.collection("curosure_image").get();
     return querySnapshot.docs;
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,27 +51,27 @@ class _HomepageState extends State<Homepage> {
                   //     child: Text('Error: ${snapshot.error}'),
                   //   );
                   // } else {
-                    List<QueryDocumentSnapshot> documents =
-                        snapshot.data as List<QueryDocumentSnapshot>;
+                  List<QueryDocumentSnapshot> documents =
+                      snapshot.data as List<QueryDocumentSnapshot>;
 
-                    // if (documents.isEmpty) {
-                    //   return Center(
-                    //     child: Text('No images available.'),
-                    //   );
-                    // }
+                  // if (documents.isEmpty) {
+                  //   return Center(
+                  //     child: Text('No images available.'),
+                  //   );
+                  // }
 
-                    return CarouselSlider.builder(
-                      itemCount: documents.length,
-                      itemBuilder: (context, index, realIndex) {
-                        // Get the image URL from the "img" field of the document
-                        String imageUrl = documents[index].get("img") as String;
+                  return CarouselSlider.builder(
+                    itemCount: documents.length,
+                    itemBuilder: (context, index, realIndex) {
+                      // Get the image URL from the "img" field of the document
+                      String imageUrl = documents[index].get("img") as String;
 
-                        return Container(
-                          child: Image.network(imageUrl),
-                        );
-                      },
-                       options: CarouselOptions(
-                        autoPlay:true,
+                      return Container(
+                        child: Image.network(imageUrl),
+                      );
+                    },
+                    options: CarouselOptions(
+                      autoPlay: true,
                       //   enlargeCenterPage: true,
                       //   aspectRatio: 16 / 9,
                       //   // Adjust to the aspect ratio of your images
@@ -85,9 +85,8 @@ class _HomepageState extends State<Homepage> {
                       //   },
                       //   scrollDirection: Axis
                       //       .horizontal, // Change to Axis.vertical for vertical scrolling
-                      ),
-                    );
-                  }
-    )));
+                    ),
+                  );
+                })));
   }
 }
